@@ -1,0 +1,16 @@
+name: [your project name] Keep-Alive
+
+on:
+  schedule:
+    - cron: '0 9 * * 1,4'
+  workflow_dispatch:
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send API Ping to Supabase Edge Function
+        run: |
+          curl -L --fail -X POST 'https://[your project url].supabase.co/functions/v1/keep-alive' \
+          -H 'Authorization: Bearer [publishable anon key]' \
+          -H 'apikey: [publishable anon key]'
